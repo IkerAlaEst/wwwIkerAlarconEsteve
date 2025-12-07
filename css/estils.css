@@ -1,6 +1,7 @@
 :root {
    --green-color: #88FF66;
    --red-color: #FF9999;
+   --brown-color: #BB8844;
 }
 
 * {
@@ -31,6 +32,14 @@ body {
    align-items: center;
 }
 
+.color-roig .contenidor-principal {
+   background: linear-gradient(0.25turn, white, var(--red-color), white);
+}
+
+.color-marro .contenidor-principal {
+   background: linear-gradient(0.25turn, white, var(--brown-color), white);
+}
+
 .contenidor-secundari {
    border: 2px solid darkgreen;
    border-radius: 10px;
@@ -49,14 +58,6 @@ form > .contenidor-secundari {
    display: inline-flex;
 }
 
-form > .contenidor-secundari > div {
-   flex-direction: row;
-   gap: 1rem;
-   display: inline-flex;
-   flex-wrap: wrap;
-   justify-content: center;
-}
-
 .button {
    padding: 0.5rem;
    border: 2px solid black;
@@ -64,14 +65,24 @@ form > .contenidor-secundari > div {
 }
 
 form > .contenidor-secundari > label {
-   width: 35%;
+   width: 50%;
    text-align: right;
 }
 
-form > .contenidor-secundari > .campo-formulario {
+form > .contenidor-secundari > select.campo-formulario, form > .contenidor-secundari > input.campo-formulario {
    width: 30%;
-   margin-right: 5%;
+   margin-right: 20%;
    height: 100%;
+}
+
+form > .contenidor-secundari > div.campo-formulario {
+   width: 50%;
+   height: 100%;
+   flex-direction: row;
+   gap: 1rem;
+   display: inline-flex;
+   flex-wrap: wrap;
+   justify-content: left;
 }
 
 input:required, textarea:required {
@@ -80,6 +91,20 @@ input:required, textarea:required {
 
 input:required:valid, textarea:required:valid{
    border: 2px solid green;
+}
+
+.valor-campo-puntuacion {
+   border: 2px solid red;
+   display: block;
+   text-align: center;
+}
+
+.color-roig .valor-campo-puntuacion {
+   background-color: var(--red-color);
+}
+
+.color-marro .valor-campo-puntuacion {
+   background-color: var(--brown-color);
 }
 
 form > .contenidor-secundari > textarea.campo-formulario {
@@ -150,6 +175,14 @@ input, select {
    color: red;
 }
 
+.color-roig .contenidor-titol {
+   background-color: var(--red-color);
+}
+
+.color-marro .contenidor-titol {
+   background-color: var(--brown-color);
+}
+
 .contenidor-parraf {
    border-radius: 10px;
    border: 1px solid black;
@@ -218,14 +251,22 @@ form {
    width: 80%;
 }
 
-.contenidor-processa > p {
+.color-roig .contenidor-processa {
+   background: linear-gradient(0.25turn, white, var(--red-color), white);
+}
+
+.color-marro .contenidor-processa {
+   background: linear-gradient(0.25turn, white, var(--brown-color), white);
+}
+
+.contenidor-processa, .contenidor-processa > p {
    width: 100%;
-   display: flex;
+   display: inline-flex;
    justify-content: center;
    align-items: center;
 }
 
-.contenidor-processa > p > .nombre-campo {
+.contenidor-processa .nombre-campo {
    color: red;
    font-weight: bold;
    width: 50%;
@@ -235,9 +276,38 @@ form {
    padding-right: 0.2rem;
 }
 
-.contenidor-processa > p > .valor-campo {
+.contenidor-processa .valor-campo {
    width: 50%;
    display: inline-block;
    text-align: left;
-   margin: 0;
+}
+
+.vacio {
+   color: dimgrey;
+   text-decoration: underline;
+   font-weight: bold;
+}
+
+.paraula-missatge {
+   padding: 0.1rem;
+   color: orange;
+   border: 1px solid orange;
+   background-color: blanchedalmond;
+   font-weight: bold;
+   display: inline-block;
+   margin-right: 0.25rem;
+}
+
+.paraula-missatge-especial {
+   color: yellow;
+   background-color: green;
+   border: none;
+   font-weight: bolder;
+}
+
+.paraula-missatge-llarga {
+   color: white;
+   background-color: black;
+   border: none;
+   font-weight: bolder;
 }

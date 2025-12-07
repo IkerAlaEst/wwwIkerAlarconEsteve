@@ -1,4 +1,4 @@
-<header class="contenidor-principal">
+<main class="contenidor-principal">
     <div class="contenidor-secundari">
         <div class="contenidor-titol">
             <h2>Contacte</h2>
@@ -19,4 +19,4 @@
             </div>
         </form>
     </div>
-</header>
+</main>

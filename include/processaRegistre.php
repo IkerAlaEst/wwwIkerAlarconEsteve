@@ -1,3 +1,8 @@
+<?php
+    $color = 'roig';
+    if (isset($_POST['color'])) $color = trim(htmlspecialchars($_POST['color']));
+?>
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -7,11 +12,13 @@
     <link rel="stylesheet" href="../css/estils.css">
 </head>
 <body>
+    <div style="display: contents;" class="color-<?php echo $color?>">
     <?php
         include "partials/cap.partial.php";
         include "partials/menu.partial.php";
         include "partials/processaRegistre.partial.php";
         include "partials/peu.partial.php";
     ?>
+    </div>
 </body>
 </html>

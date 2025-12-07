@@ -1,4 +1,4 @@
-<header class="contenidor-principal">
+<main class="contenidor-principal">
     <div class="contenidor-secundari">
         <div class="contenidor-titol">
             <h2><?php echo $apartat;?></h2>
@@ -8,4 +8,4 @@
             <h3>Error 404: Page not found: "<?php echo $apartat;?>"</h3>
         </div>
     </div>
-</header>
+</main>

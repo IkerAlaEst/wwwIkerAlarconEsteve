@@ -1,4 +1,4 @@
-<header class="contenidor-principal">
+<main class="contenidor-principal">
     <div class="contenidor-secundari">
         <div class="contenidor-titol">    
             <h2>Inici</h2>
@@ -18,4 +18,4 @@
             <img src="img/panda-rojo.jpg" alt="panda-rojo">
         </div>
     </div>
-</header>
+</main>
