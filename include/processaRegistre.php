@@ -1,5 +1,5 @@
 <?php
-    $color = 'roig';
+    $color = 'normal';
     if (isset($_POST['color'])) $color = trim(htmlspecialchars($_POST['color']));
 ?>
 

@@ -70,7 +70,7 @@
                     <label>Estils Registre: </label>
                     <div class="campo-formulario">
                     <div>
-                        <input type="radio" name="color" value="roig" checked>
+                        <input type="radio" name="color" value="roig">
                         <label> Roig</label>
                     </div>
                     <div>
@@ -84,6 +84,35 @@
                 <div class="campo-formulario">
                     <input type="number" min="1" max="5" name="puntuacio" required>
                     <input type="range" min="1" max="100" name="multiplicador">
+                </div>
+            </div>
+            <div class="contenidor-secundari">
+                <label>Animal en perill del mes:</label>
+                <div class="campo-formulario" style="flex-direction: column; gap: 0.25rem; padding-left: 0.25rem;">
+                    <div>
+                        <input style="margin-right: 0.25rem" type="checkbox" name="animals[]" value="elefant">
+                        <label>Elefant</label>
+                    </div>
+                    <div>
+                        <input style="margin-right: 0.25rem" type="checkbox" name="animals[]" value="lleopard">
+                        <label>Lleopard</label>
+                    </div>
+                    <div>
+                        <input style="margin-right: 0.25rem" type="checkbox" name="animals[]" value="marsopa">
+                        <label>Marsopa</label>
+                    </div>
+                    <div>
+                        <input style="margin-right: 0.25rem" type="checkbox" name="animals[]" value="mussol">
+                        <label>Mussol</label>
+                    </div>
+                    <div>
+                        <input style="margin-right: 0.25rem" type="checkbox" name="animals[]" value="pangolí">
+                        <label>Pangolí</label>
+                    </div>
+                    <div>
+                        <input style="margin-right: 0.25rem" type="checkbox" name="animals[]" value="saolà">
+                        <label>Saolà</label>
+                    </div>
                 </div>
             </div>
             <div class="contenidor-secundari">

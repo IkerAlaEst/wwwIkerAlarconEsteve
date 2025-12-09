@@ -30,6 +30,7 @@ body {
    display: flex;
    flex-direction: column;
    align-items: center;
+   gap: 7px;
 }
 
 .color-roig .contenidor-principal {
@@ -69,7 +70,7 @@ form > .contenidor-secundari > label {
    text-align: right;
 }
 
-form > .contenidor-secundari > select.campo-formulario, form > .contenidor-secundari > input.campo-formulario {
+form > .contenidor-secundari > select.campo-formulario, form > .contenidor-secundari > .campo-formulario {
    width: 30%;
    margin-right: 20%;
    height: 100%;
@@ -83,6 +84,7 @@ form > .contenidor-secundari > div.campo-formulario {
    display: inline-flex;
    flex-wrap: wrap;
    justify-content: left;
+   margin: 0;
 }
 
 input:required, textarea:required {
@@ -282,6 +284,11 @@ form {
    text-align: left;
 }
 
+.processa-vertical .contenidor-processa .valor-campo {
+   max-width: 100%;
+   width: fit-content;
+}
+
 .vacio {
    color: dimgrey;
    text-decoration: underline;
@@ -310,4 +317,101 @@ form {
    background-color: black;
    border: none;
    font-weight: bolder;
+}
+
+.contenidor-blau {
+   border: 3px solid blue;
+   background-color: cornflowerblue;
+   color: white;
+   padding: 0.5rem;
+   border-radius: 10px;
+}
+
+.processa-vertical .contenidor-processa {
+   flex-direction: column;
+}
+
+.processa-vertical .nombre-campo {
+   width: 100%;
+   text-align: center;
+   padding-bottom: 1rem;
+}
+
+.contenidor-processa-imatges {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.processa-vertical {
+   display: contents;
+}
+
+.processa-missatge-table-data {
+   border: 1px solid black;
+   text-align: center;
+   padding: 0.25rem;
+   padding-left: 0.47rem;
+   background-color: aliceblue;
+   height: 2.1rem;
+}
+
+.processa-missatge-table {
+   border: 1px solid black;
+   background-image:  radial-gradient(red, white, red);
+   overflow-x: auto;
+}
+
+.background-color-1 {
+   background-color: palevioletred;
+}
+
+.background-color-2 {
+   background-color: orange;
+}
+
+.background-color-3 {
+   background-color: gainsboro;
+}
+
+.background-color-4 {
+   background-color: lawngreen;
+}
+
+.background-color-5 {
+   background-color: blue;
+}
+
+.taula-dades {
+   background-color: white;
+   border: 1px solid black;
+   margin: 0 auto;
+}
+
+.encapçalament-taula-dades {
+   color: blue;
+   font-weight: 900;
+   text-align: center;
+}
+
+.index-taula-dades {
+   border: 1px solid black;
+   color: red;
+   font-weight: 700;
+   background-color: #FFCCCC;
+   padding: 0.3rem;
+   text-align: center;
+}
+
+.valor-taula-dades {
+   background-color: #CCCCFF;
+   border: 1px solid black;
+   padding: 0.3rem;
+   text-align: left;
+}
+
+img {
+   max-height: 800px;
+   max-width: 800px;
 }

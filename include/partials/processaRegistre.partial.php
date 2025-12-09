@@ -58,6 +58,7 @@
     }
     $multiplicador = 1;
     if (isset($_POST['multiplicador'])) $multiplicador = $_POST['multiplicador'];
+    $dadesAnimals = array ('goril·la' => array('Nom' => 'Peter', 'Menjar favorit' => 'Plàtans', 'Any de neixement' => '2005'), 'tortuga' => array('Nom' => 'Guantes', 'Menjar favorit' => 'Alga seca', 'Any de neixement' => '2010'), 'tigre' => array('Nom' => 'Chester', 'Menjar favorit' => 'Ternera', 'Any de neixement' => '2017'), 'rinoceront' => array('Nom' => 'Saul', 'Menjar favorit' => 'Arroç amb bogavant', 'Any de neixement' => '2005'), 'orangutan' => array('Nom' => 'César', 'Menjar favorit' => 'Mà de buda', 'Any de neixement' => '2007'))
 ?>
 
 <main class="contenidor-principal">
@@ -86,26 +87,68 @@
         <div class="contenidor-processa">
             <p><span class="nombre-campo">Donació: </span><span class="valor-campo"><?php echo ($donacio == '' ? $buit : $donacio) ?></span></p>
         </div>
-        <div class="contenidor-processa">
-            <p><span class="nombre-campo">Animal a apadrinar: </span><span class="valor-campo" style="text-align: center;"><img style="max-width: 100%;"src="<?php echo $imatgeAnimal?>" alt="<?php echo $animal?>"></span></p>
+        <div class="processa-vertical">
+            <div class="contenidor-processa">
+                <p>
+                    <span class="nombre-campo">Animal a apadrinar: </span>
+                </p>
+                <div class="valor-campo" style="text-align: center;">
+                    <img style="max-width: 100%;"src="<?php echo $imatgeAnimal?>" alt="<?php echo $animal?>">
+                    <?php
+                        if (strcmp($animal, "avatarAnimalDefault") != 0) {
+                            echo "<table class=\"taula-dades\">";
+                            echo "<tr><th colspan=\"2\" class=\"encapçalament-taula-dades\">Dades de l'animal<th></tr>";
+                            foreach ($dadesAnimals[$animal] as $index => $valor) {
+                                echo "<tr>";
+                                echo "<td class=\"index-taula-dades\">$index</td>";
+                                echo "<td class=\"valor-taula-dades\">$valor</td>";
+                                echo "</tr>";
+                            }
+                            echo "</table>";
+                        }
+                    ?>
+                </div>
+            </div>
         </div>
         <div class="contenidor-processa">
             <p><span class="nombre-campo">Continent: </span><span class="valor-campo"><?php echo ($continent == '' ? $buit : $continent) ?></span></p>
         </div>
         <div class="contenidor-processa">
-            <p>
+            <p class="nombre-campo">
                 <span class="nombre-campo">Puntuació: </span>
-                <span class="valor-campo">
+            </p>
+            <span class="valor-campo">
+                <p>
                     <span class="valor-campo-puntuacion">
                         <?php echo "$puntuacio * $multiplicador"?>
                     </span>
-                    <?php
-                        for ($i=0; $i < $puntuacio * $multiplicador; $i++) { 
-                            echo "<img style=\"height: 1rem;\" src=\"$estrella\" alt=\"estrella\">";
+                </p>
+                <?php
+                    for ($i=0; $i < $puntuacio * $multiplicador; $i++) { 
+                        echo "<img style=\"height: 2rem;\" src=\"$estrella\" alt=\"estrella\">";
+                    }
+                ?>
+            </span>
+        </div>
+        <div class="processa-vertical">
+            <div class="contenidor-processa">
+                <p>
+                    <span class="nombre-campo">Animals del mes:</span>
+                </p>
+                <div class="contenidor-processa-imatges">
+                    <?php 
+                        $animals;
+                        if(isset($_POST['animals'])) {
+                            $animals = $_POST['animals'];
+                            for ($i = 0; $i < count($animals); $i++) {
+                                echo '<img <img width="50%" src="../img/'.$animals[$i].'.jpg" alt="'.$animals[$i].'">';
+                            }
+                        } else {
+                            echo '<img style="max-width: 100%" style="display: block;" src="../img/avatarAnimalDefault.png" alt="avatarAnimalDefault">';
                         }
                     ?>
-                </span>
-            </p>
+                </div>
+            </div>
         </div>
     </div>
 </main>
