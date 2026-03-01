@@ -1,0 +1,19 @@
+:root {
+    --red-color: #FF9999;
+}
+
+.contenidor-principal {
+   background: linear-gradient(0.25turn, white, var(--red-color), white);
+}
+
+.valor-campo-puntuacion {
+   background-color: var(--red-color);
+}
+
+.contenidor-titol {
+   background-color: var(--red-color);
+}
+
+.contenidor-processa {
+   background: linear-gradient(0.25turn, white, var(--red-color), white);
+}

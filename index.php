@@ -1,8 +1,14 @@
 <?php
+    include "include/funcions.php";
     $apartat = "";
     if (isset($_GET['apartat'])) {
         $apartat = strtolower($_GET['apartat']);
+        registreApartat($apartat, "log/navegacio.log");
     }
+    $color = 'normal';
+    if (isset($_POST['color']))
+        $color = trim(htmlspecialchars($_POST['color']));
+    include 'include/partials/calcularData.partial.php';
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +18,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apadrina un animal</title>
     <link rel="stylesheet" href="css/estils.css">
+    <?php
+        if ($color != null && $color != 'normal') {
+            echo '<link rel="stylesheet" href="css/estils'.$color.'.css">';
+        }
+    ?>
 </head>
 <body>
     <?php

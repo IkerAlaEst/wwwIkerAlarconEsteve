@@ -67,19 +67,6 @@
                 </div>
             </div>
             <div class="contenidor-secundari">
-                    <label>Estils Registre: </label>
-                    <div class="campo-formulario">
-                    <div>
-                        <input type="radio" name="color" value="roig">
-                        <label> Roig</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="color" value="marro">
-                        <label> Marró</label>
-                    </div>
-                </div>
-            </div>
-            <div class="contenidor-secundari">
                 <label>Puntúa la pàgina: </label>
                 <div class="campo-formulario">
                     <input type="number" min="1" max="5" name="puntuacio" required>

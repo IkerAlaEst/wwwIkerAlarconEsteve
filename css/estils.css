@@ -1,7 +1,5 @@
 :root {
    --green-color: #88FF66;
-   --red-color: #FF9999;
-   --brown-color: #BB8844;
 }
 
 * {
@@ -31,14 +29,6 @@ body {
    flex-direction: column;
    align-items: center;
    gap: 7px;
-}
-
-.color-roig .contenidor-principal {
-   background: linear-gradient(0.25turn, white, var(--red-color), white);
-}
-
-.color-marro .contenidor-principal {
-   background: linear-gradient(0.25turn, white, var(--brown-color), white);
 }
 
 .contenidor-secundari {
@@ -99,14 +89,6 @@ input:required:valid, textarea:required:valid{
    border: 2px solid red;
    display: block;
    text-align: center;
-}
-
-.color-roig .valor-campo-puntuacion {
-   background-color: var(--red-color);
-}
-
-.color-marro .valor-campo-puntuacion {
-   background-color: var(--brown-color);
 }
 
 form > .contenidor-secundari > textarea.campo-formulario {
@@ -177,14 +159,6 @@ input, select {
    color: red;
 }
 
-.color-roig .contenidor-titol {
-   background-color: var(--red-color);
-}
-
-.color-marro .contenidor-titol {
-   background-color: var(--brown-color);
-}
-
 .contenidor-parraf {
    border-radius: 10px;
    border: 1px solid black;
@@ -206,6 +180,17 @@ input, select {
    background-image: radial-gradient(red, white, red);
    padding: 2% 5%;
    border: 2px solid black;
+   border-radius: 10px;
+   width: 90%;
+}
+
+.contenidor-horitzontal {
+   display: flex;
+   justify-content: center;
+   flex-direction: row;
+   align-items: center;
+   gap: 10%;
+   padding: 2% 5%;
    border-radius: 10px;
    width: 90%;
 }
@@ -247,18 +232,10 @@ form {
 
 .contenidor-processa {
    border: 2px solid darkgreen;
-   background: linear-gradient(0.25turn, white, var(--red-color), white);
+   background: linear-gradient(0.25turn, white, pink, white);
    border-radius: 10px;
    padding: 1rem;
    width: 80%;
-}
-
-.color-roig .contenidor-processa {
-   background: linear-gradient(0.25turn, white, var(--red-color), white);
-}
-
-.color-marro .contenidor-processa {
-   background: linear-gradient(0.25turn, white, var(--brown-color), white);
 }
 
 .contenidor-processa, .contenidor-processa > p {
