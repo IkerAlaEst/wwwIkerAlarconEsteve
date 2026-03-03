@@ -1,13 +1,20 @@
 <?php
+    session_start();
     include "include/funcions.php";
+    esborraVariablesSessio();
     $apartat = "";
     if (isset($_GET['apartat'])) {
         $apartat = strtolower($_GET['apartat']);
         registreApartat($apartat, "log/navegacio.log");
     }
     $color = 'normal';
-    if (isset($_POST['color']))
+    if (isset($_SESSION["color"])) {
+        $color = $_SESSION["color"];
+    }
+    if (isset($_POST['color'])) {
         $color = trim(htmlspecialchars($_POST['color']));
+        $_SESSION["color"] = $color;
+    }
     include 'include/partials/calcularData.partial.php';
 ?>
 

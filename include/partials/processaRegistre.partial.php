@@ -1,5 +1,28 @@
 <main class="contenidor-principal">
     <div class="contenidor-secundari">
+        <?php
+            if ($nom !== "" && $contrasenya !== "") {
+                ?>
+                    <div class="contenidor-titol">
+                        <h2>
+                            <?php
+                                switch (insereixUsuari($nom, $cognoms, $correuElectronic, $contrasenya)) {
+                                    case 'usuariInserit':
+                                        echo "Usuari $correuElectronic inserit correctament en la base de dades";
+                                        break;
+                                    case 'usuariExisteix':
+                                        echo "Error: Usuari $correuElectronic no s'ha pogut inserir correctament en la base de dades";
+                                        break;
+                                    default:
+                                        echo "Error: Usuari $correuElectronic ja existeix en la base de dades";
+                                        break;
+                                }
+                            ?>
+                        </h2>
+                    </div>
+                <?php
+            }
+        ?>
         <div class="contenidor-titol">
             <h2>Registre</h2>
         </div>
@@ -74,11 +97,17 @@
                 </p>
                 <div class="contenidor-processa-imatges">
                     <?php 
-                        $animals;
-                        if(isset($_POST['animals'])) {
-                            $animals = $_POST['animals'];
+                        if(isset($_POST['animals']) || isset($_SESSION['animalsRegistre'])) {
+                            $animals;
+                            if (isset($_SESSION["animalsRegistre"])) {
+                                $animals = unserialize($_SESSION["animalsRegistre"]);
+                            }
+                            if (isset($_POST["animals"])) {
+                                $animals = $_POST['animals'];
+                                $_SESSION["animalsRegistre"] = serialize($animals);
+                            }
                             for ($i = 0; $i < count($animals); $i++) {
-                                echo '<img <img width="50%" src="../img/'.$animals[$i].'.jpg" alt="'.$animals[$i].'">';
+                                echo '<img width="50%" src="../img/'.$animals[$i].'.jpg" alt="'.$animals[$i].'">';
                             }
                         } else {
                             echo '<img style="max-width: 100%" style="display: block;" src="../img/avatarAnimalDefault.png" alt="avatarAnimalDefault">';

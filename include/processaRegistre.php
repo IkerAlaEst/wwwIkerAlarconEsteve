@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include 'funcions.php';
     include 'partials/calcularData.partial.php';
     include 'partials/dadesAnimals.partial.php';
@@ -7,27 +8,78 @@
     
     // Dades processat:
     $color = 'normal';
-    if (isset($_POST['color'])) $color = trim(htmlspecialchars($_POST['color']));
-    
+    if (isset($_SESSION["color"])) {
+        $color = $_SESSION["color"];
+    }
+    if (isset($_POST['color'])) {
+        $color = trim(htmlspecialchars($_POST['color']));
+        $_SESSION["color"] = $color;
+    }
     $nom = '';
-    if (isset($_POST['nom'])) $nom = trim(htmlspecialchars($_POST['nom']));
+    if (isset($_SESSION["nomRegistre"])) {
+        $nom = $_SESSION["nomRegistre"];
+    }
+    if (isset($_POST['nom'])) {
+        $nom = trim(htmlspecialchars($_POST['nom']));
+        $_SESSION["nomRegistre"] = $nom;
+    }
     $cognoms = '';
-    if (isset($_POST['cognoms'])) $cognoms = trim(htmlspecialchars($_POST['cognoms']));
+    if (isset($_SESSION["cognomsRegistre"])) {
+        $cognoms = $_SESSION["cognomsRegistre"];
+    }
+    if (isset($_POST['cognoms'])) {
+        $cognoms = trim(htmlspecialchars($_POST['cognoms']));
+        $_SESSION["cognomsRegistre"] = $cognoms;
+    }
     $adreça = '';
-    if (isset($_POST['adreça'])) $adreça = trim(htmlspecialchars($_POST['adreça']));
+    if (isset($_SESSION["adreçaRegistre"])) {
+        $adreça = $_SESSION["adreçaRegistre"];
+    }
+    if (isset($_POST['adreça'])) {
+        $adreça = trim(htmlspecialchars($_POST['adreça']));
+        $_SESSION["adreçaRegistre"] = $adreça;
+    }
     $correuElectronic = '';
+    if (isset($_SESSION["correuElectronicRegistre"])) {
+        $correuElectronic = $_SESSION["correuElectronicRegistre"];
+    }
     if (isset($_POST['correuElectronic'])) {
         $correuElectronic = trim(htmlspecialchars($_POST['correuElectronic']));
+        $_SESSION["correuElectronicRegistre"] = $correuElectronic;
         registreAccionsUsuari("registre", $correuElectronic, "../log/accionsUsuari.log");
     }
     $contrasenya = '';
-    if (isset($_POST['contrasenya'])) $contrasenya = trim(htmlspecialchars($_POST['contrasenya']));
+    if (isset($_SESSION["contrasenyaRegistre"])) {
+        $contrasenya = $_SESSION["contrasenyaRegistre"];
+    }
+    if (isset($_POST['contrasenya'])) {
+        $contrasenya = trim(htmlspecialchars($_POST['contrasenya']));
+        $_SESSION["contrasenyaRegistre"] = $contrasenya;
+    }
     $telefon = '';
-    if (isset($_POST['telefon'])) $telefon = trim(htmlspecialchars($_POST['telefon']));
+    if (isset($_SESSION["telefonRegistre"])) {
+        $telefon = $_SESSION["telefonRegistre"];
+    }
+    if (isset($_POST['telefon'])) {
+        $telefon = trim(htmlspecialchars($_POST['telefon']));
+        $_SESSION["telefonRegistre"] = $telefon;
+    }
     $donacio = '';
-    if (isset($_POST['donacio'])) $donacio = trim(htmlspecialchars($_POST['donacio']));
+    if (isset($_SESSION["donacioRegistre"])) {
+        $donacio = $_SESSION["donacioRegistre"];
+    }
+    if (isset($_POST['donacio'])) {
+        $donacio = trim(htmlspecialchars($_POST['donacio']));
+        $_SESSION["donacioRegistre"] = $donacio;
+    }
     $animal = 'avatarAnimalDefault';
-    if (isset($_POST['animal']) && strcmp($_POST['animal'],'') != 0) $animal = trim(htmlspecialchars($_POST['animal']));
+    if (isset($_SESSION["animalRegistre"])) {
+        $animal = $_SESSION["animalRegistre"];
+    }
+    if (isset($_POST['animal']) && $_POST['animal'] !== '') {
+        $animal = trim(htmlspecialchars($_POST['animal']));
+        $_SESSION["animalRegistre"] = $animal;
+    }
     $imatgeAnimal = '../img/avatarAnimalDefault.png';
     switch ($animal) {
         case 'goril·la':
@@ -47,9 +99,21 @@
             break;
     }
     $continent = '';
-    if (isset($_POST['continent'])) $continent = trim(htmlspecialchars($_POST['continent']));
+    if (isset($_SESSION["continent"])) {
+        $continent = $_SESSION["continent"];
+    }
+    if (isset($_POST['continent'])) {
+        $continent = trim(htmlspecialchars($_POST['continent']));
+        $_SESSION["continent"] = $continent;
+    }
     $puntuacio = 1;
-    if (isset($_POST['puntuacio'])) $puntuacio = $_POST['puntuacio'];
+    if (isset($_SESSION["puntuacio"])) {
+        $puntuacio = $_SESSION["puntuacio"];
+    }
+    if (isset($_POST['puntuacio'])) {
+        $puntuacio = (int) $_POST['puntuacio'];
+        $_SESSION["puntuacio"] = $puntuacio;
+    }
     $estrella = '';
     switch ($puntuacio) {
         case 1:
@@ -69,7 +133,13 @@
             break;
     }
     $multiplicador = 1;
-    if (isset($_POST['multiplicador'])) $multiplicador = $_POST['multiplicador'];
+    if (isset($_SESSION["multiplicadorRegistre"])) {
+        $multiplicador = $_SESSION["multiplicadorRegistre"];
+    }
+    if (isset($_POST['multiplicador'])) {
+        $multiplicador = $_POST['multiplicador'];
+        $_SESSION["multiplicadorRegistre"] = $multiplicador;
+    }
 ?>
 
 <!DOCTYPE html>

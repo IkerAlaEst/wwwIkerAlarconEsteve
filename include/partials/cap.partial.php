@@ -15,6 +15,7 @@
             <form action="<?php echo $action; ?>" method="post">
                 <label><input type="radio" name="color" value="Roig">Roig</label>
                 <label><input type="radio" name="color" value="Marro">Marró</label>
+                <input type="radio" name="color" value="normal" checked hidden>
                 <input type="submit" value="Canvia">
             </form>
         </div>

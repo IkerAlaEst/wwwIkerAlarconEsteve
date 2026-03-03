@@ -1,22 +1,45 @@
 <?php
+    session_start();
     include 'funcions.php';
     include 'partials/calcularData.partial.php';
 
     const BUIT = '<span class="vacio">*Valor Buit*</span>';
 
     $color = 'normal';
-        if (isset($_POST['color'])) $color = trim(htmlspecialchars($_POST['color']));
+    if (isset($_SESSION["color"])) {
+        $color = $_SESSION["color"];
+    }
+    if (isset($_POST['color'])) {
+        $color = trim(htmlspecialchars($_POST['color']));
+        $_SESSION["color"] = $color;
+    }
 
     // Dades processat:
     $correuElectronic = '';
+    if (isset($_SESSION["correuElectronicContacte"])) {
+        $correuElectronic = $_SESSION["correuElectronicContacte"];
+    }
     if (isset($_POST['correuElectronic'])) {
         $correuElectronic = trim(htmlspecialchars($_POST['correuElectronic']));
+        $_SESSION["correuElectronicContacte"] = $correuElectronic;
         registreAccionsUsuari("contacte", $correuElectronic, "../log/accionsUsuari.log");
     }
     $assumpte = '';
-    if (isset($_POST['assumpte'])) $assumpte = trim(htmlspecialchars($_POST['assumpte']));
+    if (isset($_SESSION["assumpteContacte"])) {
+        $assumpte = $_SESSION["assumpteContacte"];
+    }
+    if (isset($_POST['assumpte'])) {
+        $assumpte = trim(htmlspecialchars($_POST['assumpte']));
+        $_SESSION["assumpteContacte"] = $assumpte;
+    }
     $missatge = '';
-    if (isset($_POST['missatge'])) $missatge = trim(htmlspecialchars($_POST['missatge']));
+    if (isset($_SESSION["missatgeContacte"])) {
+        $missatge = $_SESSION["missatgeContacte"];
+    }
+    if (isset($_POST['missatge'])) {
+        $missatge = trim(htmlspecialchars($_POST['missatge']));
+        $_SESSION["missatgeContacte"] = $missatge;
+    }
     $missatgeExplotat = explode(' ', $missatge);
     $missatgeSeparat = array();
     for ($i=0, $j=0; $i < count($missatgeExplotat); $i++) { 
