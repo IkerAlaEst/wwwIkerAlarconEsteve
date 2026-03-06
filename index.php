@@ -9,6 +9,15 @@
         $apartat = strtolower($_GET['apartat']);
         registreApartat($apartat, "log/navegacio.log");
     }
+
+    // processament de formularis d'animals (carret)
+    // no fem servir $_SERVER segons preferència, simplement comprovem els camps POST
+    if (isset($_POST['idAnimal']) && isset($_POST['quantitatAnimal'])) {
+        $_SESSION['idAnimal'] = (int) $_POST['idAnimal'];
+        $_SESSION['quantitatAnimal'] = (int) $_POST['quantitatAnimal'];
+        header("Location: index.php?apartat=apadrina");
+        die();
+    }
     $color = 'normal';
     if (isset($_SESSION["color"])) {
         $color = $_SESSION["color"];

@@ -83,17 +83,15 @@
         $USUARI_CONNEXIO = "root";
         $CONTRASENYA_CONNEXIO = "root";
         $BASE_DADES = "projectePHPIker";
-        return true;
         $connexio = new mysqli($SERVIDOR, $USUARI_CONNEXIO, $CONTRASENYA_CONNEXIO, $BASE_DADES);
-        $sql = "SELECT * FROM usuari WHERE correu = '$correu'";
-        $eixida = mysqli_query($connexio, $sql);
-        if (mysqli_num_rows($resultat) > 0) {
-            mysqli_close($connexio);
-            return true;
-        } else {
-            mysqli_close($connexio);
+        if ($connexio->connect_error) {
             return false;
         }
+        $sql = "SELECT * FROM usuari WHERE correu = '$correu'";
+        $resultat = mysqli_query($connexio, $sql);
+        $exists = (mysqli_num_rows($resultat) > 0);
+        mysqli_close($connexio);
+        return $exists;
     }
 
     function mostrarError(string $error) : void {
@@ -113,4 +111,53 @@
                 break;
         }
         echo "<div class='contenidor-error'><p>".$missatgeError."</p></div>";
+    }
+
+    // ------------------------------------------------------------------
+    // funcions relacionades amb la taula d'animals
+    function mostraFormulariAnimal(int $id): void {
+        // crea un formulari per afegir una quantitat de l'animal al carret
+        $formId = 'formulariAnimal'.$id;
+        echo '<form id="'.$formId.'" name="'.$formId.'" action="index.php?apartat=apadrina" method="POST">';
+        echo '<input type="hidden" name="idAnimal" value="'.$id.'">';
+        echo '<div><span><label for="quantitatAnimal'.$id.'">Quantitat:</label></span>';
+        echo '<span><input id="quantitatAnimal'.$id.'" name="quantitatAnimal" type="number" min="0" step="1"></span></div>';
+        echo '<div><span><button id="enviaFormulariAnimal'.$id.'" name="envia" type="submit">Afegeix al carret</button></span></div>';
+        echo '</form>';
+    }
+
+    function mostraAnimals(): void {
+        $SERVIDOR = "localhost";
+        $USUARI_CONNEXIO = "root";
+        $CONTRASENYA_CONNEXIO = "root";
+        $BASE_DADES = "projectePHPIker";
+        $connexio = new mysqli($SERVIDOR, $USUARI_CONNEXIO, $CONTRASENYA_CONNEXIO, $BASE_DADES);
+        if ($connexio->connect_error) {
+            echo "<p>Error en la connexió amb la base de dades.</p>";
+            return;
+        }
+        $sql = "SELECT * FROM animal";
+        $resultat = $connexio->query($sql);
+        if ($resultat && $resultat->num_rows > 0) {
+            echo '<div class="animal-grid">';
+            while ($row = $resultat->fetch_assoc()) {
+                echo '<div class="animal-card">';
+                echo '<h3>'.htmlspecialchars($row['nom_comu']).' (<em>'.htmlspecialchars($row['nom_cientific']).'</em>)</h3>';
+                $img = $row['imatge'] !== '' ? $row['imatge'] : 'animalDefecte.png';
+                echo '<img src="img/apadrina/'.htmlspecialchars($img).'" alt="'.htmlspecialchars($row['nom_comu']).'" style="max-width:150px;">';
+                if ($row['descripcio'] !== '') {
+                    echo '<p>'.nl2br(htmlspecialchars($row['descripcio'])).'</p>';
+                }
+                echo '<p>Donació: '.htmlspecialchars($row['donacio']).' €</p>';
+                echo '<p>Apadrinats: '.htmlspecialchars($row['quantitat']).'</p>';
+                echo '<p>Afegit el: '.htmlspecialchars($row['data_afegit']).'</p>';
+                // formulari per a aquest animal
+                mostraFormulariAnimal($row['id']);
+                echo '</div>';
+            }
+            echo '</div>'; // close grid
+        } else {
+            echo '<p>No hi ha animals disponibles.</p>';
+        }
+        $connexio->close();
     }

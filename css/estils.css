@@ -261,6 +261,36 @@ form {
    text-align: left;
 }
 
+/* layout for animal listing */
+.animal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+    justify-items: center;
+}
+.animal-card {
+    border: 1px solid darkgreen;
+    border-radius: 8px;
+    padding: 0.5rem;
+    width: 90%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.animal-card img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.animal-card h3 {
+    text-align: center;
+    font-size: 1.1rem;
+}
+
 .processa-vertical .contenidor-processa .valor-campo {
    max-width: 100%;
    width: fit-content;
