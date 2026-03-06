@@ -197,6 +197,7 @@
         } else {
             include "partials/processaRegistre.partial.php";
         }
+        include "partials/carret.partial.php";
         include "partials/peu.partial.php";
     ?>
 </body>

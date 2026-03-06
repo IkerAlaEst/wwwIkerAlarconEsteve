@@ -145,6 +145,18 @@ input, select {
    color: red;
 }
 
+#menu > .menu-actiu {
+   flex-grow: 1;
+   border: 2px solid red;
+   border-radius: 30px;
+   padding: 0.5rem 0rem;
+   background-color: yellow;
+   font-weight: bold;
+   text-align: center;
+   color: blue;
+   cursor: default;
+}
+
 .text-copyright {
    color: green;
    font-style: italic;
@@ -291,6 +303,36 @@ form {
     font-size: 1.1rem;
 }
 
+.log-login-ok {
+   background-color: #d4edda; 
+   padding: 0.2rem; 
+}
+
+.log-login-error {
+   background-color: #f8d7da; 
+   padding: 0.2rem; 
+}
+
+.log-logout {
+   background-color: #d1ecf1;
+   padding: 0.2rem;
+}
+
+.log-eliminacio {
+   background-color: #fff3cd;
+   padding: 0.2rem;
+}
+
+.log-registre {
+   background-color: #e2e3e5;
+   padding: 0.2rem;
+}
+
+.log-contacte {
+   background-color: #cce5ff;
+   padding: 0.2rem;
+}
+
 .processa-vertical .contenidor-processa .valor-campo {
    max-width: 100%;
    width: fit-content;
@@ -434,4 +476,16 @@ img {
    padding: 0.2rem 0.6rem;
    font-weight: bold;
    background-color: white;
+}
+
+.carret {
+   position: fixed;
+   left: 10px;
+   top: 10px;
+   background-color: #f0f0f0;
+   border: 1px solid #ccc;
+   padding: 10px;
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+   width: 200px;
 }

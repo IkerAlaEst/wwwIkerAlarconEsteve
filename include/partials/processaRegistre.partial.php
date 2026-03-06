@@ -11,10 +11,10 @@
                                         echo "Usuari $correuElectronic inserit correctament en la base de dades";
                                         break;
                                     case 'usuariExisteix':
-                                        echo "Error: Usuari $correuElectronic no s'ha pogut inserir correctament en la base de dades";
+                                        echo "Error: Usuari $correuElectronic ja existeix en la base de dades";
                                         break;
                                     default:
-                                        echo "Error: Usuari $correuElectronic ja existeix en la base de dades";
+                                        echo "Error: Usuari $correuElectronic no s'ha pogut inserir correctament en la base de dades";
                                         break;
                                 }
                             ?>

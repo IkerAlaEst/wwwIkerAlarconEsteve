@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'funcions.php';
 if (!isset($_SESSION['admin'])) {
     header("Location: ../index.php");
     die();
@@ -9,21 +10,33 @@ if (!isset($_GET['id'])) {
     die();
 }
 $id = intval($_GET['id']);
-$SERVIDOR = "localhost";
-$USUARI_CONNEXIO = "root";
-$CONTRASENYA_CONNEXIO = "root";
-$BASE_DADES = "projectePHPIker";
-$connexio = new mysqli($SERVIDOR, $USUARI_CONNEXIO, $CONTRASENYA_CONNEXIO, $BASE_DADES);
-if ($connexio->connect_error) {
+$servidorBd = CredencialsBD::SERVIDOR;
+$usuariBd = CredencialsBD::USUARI;
+$contrasenyaBd = CredencialsBD::CONTRASENYA;
+$nomBase = CredencialsBD::BASEDADES;
+$connexioBd = new mysqli($servidorBd, $usuariBd, $contrasenyaBd, $nomBase);
+if ($connexioBd->connect_error) {
     header("Location: ../index.php?accioadmin=errorbasedades");
     die();
 }
+// recollir dades de l'usuari per registrar
+$emailUsuari = '';
+$sel = "SELECT correu FROM usuari WHERE id = $id";
+$resSel = $connexioBd->query($sel);
+if ($resSel && $resSel->num_rows > 0) {
+    $row = $resSel->fetch_assoc();
+    $emailUsuari = $row['correu'];
+}
 $sql = "DELETE FROM `usuari` WHERE `id` = $id";
-if ($connexio->query($sql) === TRUE) {
+if ($connexioBd->query($sql) === TRUE) {
+    // registre eliminació
+    if ($emailUsuari !== '') {
+        registreAccionsUsuari("eliminació usuari", $emailUsuari, "../log/accionsUsuari.log");
+    }
     header("Location: ../index.php?accioadmin=eliminat");
 } else {
     header("Location: ../index.php?accioadmin=errorbasedades");
 }
-$connexio->close();
+$connexioBd->close();
 die();
 ?>

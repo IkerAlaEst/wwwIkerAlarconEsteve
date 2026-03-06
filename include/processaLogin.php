@@ -19,34 +19,37 @@
     }
 
     if (usuariExisteix($correu)) {
-        $SERVIDOR = "localhost";
-        $USUARI_CONNEXIO = "root";
-        $CONTRASENYA_CONNEXIO = "root";
-        $BASE_DADES = "projectePHPIker";
+        $servidorBd = CredencialsBD::SERVIDOR;
+        $usuariBd = CredencialsBD::USUARI;
+        $contrasenyaBd = CredencialsBD::CONTRASENYA;
+        $nomBase = CredencialsBD::BASEDADES;
         try {
-            $connexio = new mysqli($SERVIDOR, $USUARI_CONNEXIO, $CONTRASENYA_CONNEXIO, $BASE_DADES);
+            $connexioBd = new mysqli($servidorBd, $usuariBd, $contrasenyaBd, $nomBase);
             $sql = "SELECT * FROM usuari WHERE correu = '$correu'";
-            $resultat = mysqli_query($connexio, $sql);
+            $resultat = mysqli_query($connexioBd, $sql);
             if (mysqli_num_rows($resultat) > 0) {
                 while ($fila = mysqli_fetch_assoc($resultat)) {
                     if (password_verify($contrasenya, $fila["contrasenya"])) {
-                        mysqli_close($connexio);
+                        mysqli_close($connexioBd);
                         $_SESSION["correuLogin"] = $correu;
                         $_SESSION["contrasenyaLogin"] = $contrasenya;
                         $_SESSION["nomLogin"] = $fila["nom"];
                         if ($correu == 'admin@daw.com') {
                             $_SESSION['admin'] = true;
                         }
+                        registreAccionsUsuari("login correcte", $correu, "../log/accionsUsuari.log");
                         header("Location: ../index.php");
                         die();
                     } else {
-                        mysqli_close($connexio);
+                        mysqli_close($connexioBd);
+                        registreAccionsUsuari("login incorrecte", $correu, "../log/accionsUsuari.log");
                         header("Location: ../index.php?error=contrasenyaLogin");
                         die();
                     }
                 }
             } else {
-                mysqli_close($connexio);
+                mysqli_close($connexioBd);
+                registreAccionsUsuari("login incorrecte", $correu, "../log/accionsUsuari.log");
                 header("Location: ../index.php?error=correuLogin");
                 die();
             }

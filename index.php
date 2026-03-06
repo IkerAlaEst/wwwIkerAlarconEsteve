@@ -10,8 +10,6 @@
         registreApartat($apartat, "log/navegacio.log");
     }
 
-    // processament de formularis d'animals (carret)
-    // no fem servir $_SERVER segons preferència, simplement comprovem els camps POST
     if (isset($_POST['idAnimal']) && isset($_POST['quantitatAnimal'])) {
         $_SESSION['idAnimal'] = (int) $_POST['idAnimal'];
         $_SESSION['quantitatAnimal'] = (int) $_POST['quantitatAnimal'];
@@ -32,7 +30,6 @@
     }
     include 'include/partials/calcularData.partial.php';
 
-    // Bloc login
     $correuLogin = '';
     if (isset($_SESSION["correuLogin"])) {
         $correuLogin = $_SESSION["correuLogin"];
@@ -89,6 +86,7 @@
                     break;
             }
         }
+        include "include/partials/carret.partial.php";
         include "include/partials/peu.partial.php";
     ?>
 </body>
