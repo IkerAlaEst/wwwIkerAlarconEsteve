@@ -94,3 +94,22 @@
             return false;
         }
     }
+
+    function mostrarError(string $error) : void {
+        $missatgeError = "";
+        switch ($error) {
+            case 'contrasenya':
+                $missatgeError = "Les contrasenyes no coincideixen";
+                break;
+            case 'contrasenyaLogin':
+                $missatgeError = "Error en la contrasenya";
+                break;
+            case 'correuLogin':
+                $missatgeError = "No existeix cap usuari amb aquest correu";
+                break;
+            case 'connexioBD':
+                $missatgeError = "Error en la connexió a la base de dades";
+                break;
+        }
+        echo "<div class='contenidor-error'><p>".$missatgeError."</p></div>";
+    }

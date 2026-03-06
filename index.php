@@ -1,5 +1,6 @@
 <?php
     session_start();
+    //session_unset();
     include "include/funcions.php";
     esborraVariablesSessio();
     $apartat = "";
@@ -15,7 +16,21 @@
         $color = trim(htmlspecialchars($_POST['color']));
         $_SESSION["color"] = $color;
     }
+    $error = '';
+    if (isset($_GET['error'])) {
+        $error = trim(htmlspecialchars($_GET['error']));
+    }
     include 'include/partials/calcularData.partial.php';
+
+    // Bloc login
+    $correuLogin = '';
+    if (isset($_SESSION["correuLogin"])) {
+        $correuLogin = $_SESSION["correuLogin"];
+    }
+    $nomLogin = '';
+    if (isset($_SESSION["nomLogin"])) {
+        $nomLogin = $_SESSION["nomLogin"];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -34,26 +49,35 @@
 <body>
     <?php
         include "include/partials/cap.partial.php";
-        include "include/partials/menu.partial.php";
-        switch ($apartat) {
-            case '':
-                include "include/partials/inici.partial.php";
-                break;
-            case 'inici':
-                include "include/partials/inici.partial.php";
-                break;
-            case 'registre':
-                include "include/partials/registre.partial.php";
-                break;
-            case 'contacte':
-                include "include/partials/contacte.partial.php";
-                break;
-            case 'apadrina':
-                include "include/partials/apadrina.partial.php";
-                break;
-            default:
-                include "include/partials/error.partial.php";
-                break;
+        if ($correuLogin === '') {
+            include "include/partials/login.partial.php";
+        }
+        if (!isset($_SESSION['admin'])) {
+            include "include/partials/menu.partial.php";
+        }
+        if (isset($_SESSION['admin'])) {
+            include "include/partials/admin.partial.php";
+        } else {
+            switch ($apartat) {
+                case '':
+                    include "include/partials/inici.partial.php";
+                    break;
+                case 'inici':
+                    include "include/partials/inici.partial.php";
+                    break;
+                case 'registre':
+                    include "include/partials/registre.partial.php";
+                    break;
+                case 'contacte':
+                    include "include/partials/contacte.partial.php";
+                    break;
+                case 'apadrina':
+                    include "include/partials/apadrina.partial.php";
+                    break;
+                default:
+                    include "include/partials/error.partial.php";
+                    break;
+            }
         }
         include "include/partials/peu.partial.php";
     ?>

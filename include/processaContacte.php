@@ -14,6 +14,11 @@
         $_SESSION["color"] = $color;
     }
 
+    $error = '';
+    if (isset($_GET['error'])) {
+        $error = trim(htmlspecialchars($_GET['error']));
+    }
+
     // Dades processat:
     $correuElectronic = '';
     if (isset($_SESSION["correuElectronicContacte"])) {
@@ -52,6 +57,16 @@
     if (count($missatgeSeparat) > 0) {
         $llongitud = count($missatgeSeparat);
     }
+
+    // Bloc login
+    $correuLogin = '';
+    if (isset($_SESSION["correuLogin"])) {
+        $correuLogin = $_SESSION["correuLogin"];
+    }
+    $nomLogin = '';
+    if (isset($_SESSION["nomLogin"])) {
+        $nomLogin = $_SESSION["nomLogin"];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +85,9 @@
 <body>
     <?php
         include "partials/cap.partial.php";
+        if ($correuLogin === '') {
+            include "partials/login.partial.php";
+        }
         include "partials/menu.partial.php";
         include "partials/processaContacte.partial.php";
         include "partials/peu.partial.php";

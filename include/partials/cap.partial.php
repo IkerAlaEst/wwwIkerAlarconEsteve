@@ -22,7 +22,14 @@
         <div class="contenidor-blau">
             <h3>
                 <?php
+                    if ($correuLogin !== '') {
+                        echo "Hola, ".$nomLogin."! :: ";
+                    }
                     echo $data;
+                    if ($correuLogin !== '') {
+                        $href = (strcmp(basename($_SERVER['PHP_SELF']), "index.php") == 0) ? "include/processaLogout.php" : "processaLogout.php";
+                        echo ' <a href="' . $href . '">Logout</a>';
+                    }
                 ?>
             </h3>
         </div>

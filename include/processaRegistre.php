@@ -5,6 +5,11 @@
     include 'partials/dadesAnimals.partial.php';
 
     const BUIT = '<span class="vacio">*Valor Buit*</span>';
+
+    $error = '';
+    if (isset($_GET['error'])) {
+        $error = trim(htmlspecialchars($_GET['error']));
+    }
     
     // Dades processat:
     $color = 'normal';
@@ -55,6 +60,18 @@
     if (isset($_POST['contrasenya'])) {
         $contrasenya = trim(htmlspecialchars($_POST['contrasenya']));
         $_SESSION["contrasenyaRegistre"] = $contrasenya;
+    }
+    $confirmaContrasenya = '';
+    if (isset($_SESSION["confirmaContrasenyaRegistre"])) {
+        $confirmaContrasenya = $_SESSION["confirmaContrasenyaRegistre"];
+    }
+    if (isset($_POST['confirmaContrasenya'])) {
+        $confirmaContrasenya = trim(htmlspecialchars($_POST['confirmaContrasenya']));
+        $_SESSION["confirmaContrasenyaRegistre"] = $confirmaContrasenya;
+    }
+    if (strcmp($contrasenya, $confirmaContrasenya) !== 0) {
+        header("Location: ../index.php?apartat=registre&error=contrasenya");
+        die();
     }
     $telefon = '';
     if (isset($_SESSION["telefonRegistre"])) {
@@ -140,6 +157,16 @@
         $multiplicador = $_POST['multiplicador'];
         $_SESSION["multiplicadorRegistre"] = $multiplicador;
     }
+
+    // Bloc login
+    $correuLogin = '';
+    if (isset($_SESSION["correuLogin"])) {
+        $correuLogin = $_SESSION["correuLogin"];
+    }
+    $nomLogin = '';
+    if (isset($_SESSION["nomLogin"])) {
+        $nomLogin = $_SESSION["nomLogin"];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -158,8 +185,17 @@
 <body>
     <?php
         include "partials/cap.partial.php";
-        include "partials/menu.partial.php";
-        include "partials/processaRegistre.partial.php";
+        if ($correuLogin === '') {
+            include "partials/login.partial.php";
+        }
+        if (!isset($_SESSION['admin'])) {
+            include "partials/menu.partial.php";
+        }
+        if (isset($_SESSION['admin'])) {
+            include "partials/admin.partial.php";
+        } else {
+            include "partials/processaRegistre.partial.php";
+        }
         include "partials/peu.partial.php";
     ?>
 </body>

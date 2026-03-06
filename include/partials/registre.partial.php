@@ -20,6 +20,13 @@
                 <label>Contrasenya: </label><input class="campo-formulario" type="password" required name="contrasenya">
             </div>
             <div class="contenidor-secundari">
+                <label>Confirma Contrasenya: </label><input class="campo-formulario" type="password" required name="confirmaContrasenya">
+            </div>
+            <?php
+                if ($error === "contrasenya")
+                    mostrarError($error);
+            ?>
+            <div class="contenidor-secundari">
                 <label>Telèfon: </label><input class="campo-formulario" type="tel" name="telefon">
             </div>
             <div class="contenidor-secundari">
