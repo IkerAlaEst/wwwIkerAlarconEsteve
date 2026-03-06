@@ -55,12 +55,13 @@
             if (usuariExisteix($correu)) {
                 $sql = "";
                 $connexio = new mysqli($SERVIDOR, $USUARI_CONNEXIO, $CONTRASENYA_CONNEXIO, $BASE_DADES);
+                $hashedPassword = password_hash($contrasenya, PASSWORD_DEFAULT);
                 if ($cognoms !== "") {
                     $sql = "INSERT INTO `usuari` (`nom`, `cognoms`, `correu`, `contrasenya`)
-                    VALUES ('$nom', '$cognoms', '$correu', '$contrasenya')";
+                    VALUES ('$nom', '$cognoms', '$correu', '$hashedPassword')";
                 } else {
                     $sql = "INSERT INTO `usuari` (`nom`, `correu`, `contrasenya`)
-                    VALUES ('$nom', '$correu', '$contrasenya')";
+                    VALUES ('$nom', '$correu', '$hashedPassword')";
                 }
                 if (mysqli_query($connexio, $sql)) {
                     mysqli_close($connexio);

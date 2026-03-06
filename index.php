@@ -2,6 +2,7 @@
     session_start();
     //session_unset();
     include "include/funcions.php";
+    include "include/funcionsAdmin.php";
     esborraVariablesSessio();
     $apartat = "";
     if (isset($_GET['apartat'])) {
@@ -56,7 +57,7 @@
             include "include/partials/menu.partial.php";
         }
         if (isset($_SESSION['admin'])) {
-            include "include/partials/admin.partial.php";
+            gestionaUsuaris();
         } else {
             switch ($apartat) {
                 case '':

@@ -29,7 +29,7 @@
             $resultat = mysqli_query($connexio, $sql);
             if (mysqli_num_rows($resultat) > 0) {
                 while ($fila = mysqli_fetch_assoc($resultat)) {
-                    if ($fila["contrasenya"] === $contrasenya) {
+                    if (password_verify($contrasenya, $fila["contrasenya"])) {
                         mysqli_close($connexio);
                         $_SESSION["correuLogin"] = $correu;
                         $_SESSION["contrasenyaLogin"] = $contrasenya;
@@ -41,7 +41,7 @@
                         die();
                     } else {
                         mysqli_close($connexio);
-                        header("Location: ../index.php?error=loginContrasenya");
+                        header("Location: ../index.php?error=contrasenyaLogin");
                         die();
                     }
                 }

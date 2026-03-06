@@ -1,6 +1,7 @@
 <?php
     session_start();
     include 'funcions.php';
+    include 'funcionsAdmin.php';
     include 'partials/calcularData.partial.php';
     include 'partials/dadesAnimals.partial.php';
 
@@ -192,7 +193,7 @@
             include "partials/menu.partial.php";
         }
         if (isset($_SESSION['admin'])) {
-            include "partials/admin.partial.php";
+            gestionaUsuaris();
         } else {
             include "partials/processaRegistre.partial.php";
         }

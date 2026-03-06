@@ -8,7 +8,9 @@
 <nav class="contenidor-principal">
     <div class="contenidor-secundari" id="menu">
         <a href="<?php echo $ruta?>index.php?apartat=inici">Inici</a>
+        <?php if (!isset($_SESSION['correuLogin'])): ?>
         <a href="<?php echo $ruta?>index.php?apartat=registre">Registre</a>
+        <?php endif; ?>
         <a href="<?php echo $ruta?>index.php?apartat=contacte">Contacte</a>
         <a href="<?php echo $ruta?>index.php?apartat=apadrina">Apadrina</a>
     </div>
