@@ -39,4 +39,3 @@ if ($connexioBd->query($sql) === TRUE) {
 }
 $connexioBd->close();
 die();
-?>

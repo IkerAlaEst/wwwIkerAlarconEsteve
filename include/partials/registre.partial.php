@@ -1,4 +1,6 @@
-<?php if (isset($_SESSION['correuLogin'])) { include 'inici.partial.php'; } else { ?>
+<?php if (isset($_SESSION['correuLogin'])) {
+    include 'inici.partial.php';
+    } else { ?>
 <main class="contenidor-principal">
     <div class="contenidor-secundari">
         <div class="contenidor-titol">

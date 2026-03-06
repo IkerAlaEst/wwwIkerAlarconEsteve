@@ -4,7 +4,6 @@
         $ruta = '../';
     }
 
-    // Determinar l'apartat actual
     $apartatActual = '';
     $paginaActual = basename($_SERVER['PHP_SELF']);
     if ($paginaActual === 'index.php') {
